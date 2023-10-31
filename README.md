@@ -8,32 +8,32 @@ We establish a Ethereum connection on our app and run our Solidity smart contrac
 The app is built on flask for a lightweight framework capable of our development needs. Python allows for simple implementation on both frontend and our blockchain connection and smart contract execution using the Web3 api.
 
 # Sequence Diagram
-'''mermaid
+```mermaid
 sequenceDiagram
-    User ->> Device: Log In
-    Device ->> User: Access Granted
-    User ->> Device: I'd like to give free recipe data
-    Device ->> IPFS: Sending recipe to our peer-to-peer
-    IPFS ->> Device: Successful entry
-    Device ->> User Wallet: Store tokens as reward
-    User ->> Device: I'd like to search for this recipe
-    Device ->> IPFS: Request this data
-    IPFS ->> Device: Successful retrieval of data
-    Device ->> User: Return recipe data on site
-    User ->> Device: I'd like to buy this person's recipe
-    Device ->> User Wallet: Verify funds for this purchase
-    User Wallet ->> Device: Verified funds, removed funds from account
-    Device ->> Recipe Owner: Sending funds to the recipe owner's wallet
-    IPFS ->> Device: Recipe copy sent after purchase
-    Device ->> User: Returned recipe
-    User ->> Device: I'd like to sell a recipe on the marketplace
-    Device ->> IPFS: Sending recipe to our peer-to-peer
-    IPFS ->> Device: Successful entry
-    Device ->> User Wallet: Store tokens as reward
-    Other User ->> Device: I'd like to buy User's recipe
-    Device ->> Other User Wallet: Verify funds for this purchase
-    Other User Wallet ->> Device: Verified funds, removed funds from account
-    Device ->> User Wallet: Sending funds to the recipe owner's wallet
-    IPFS ->> Device: Recipe copy sent after purchase
-    Device ->> Other User: Returned recipe
-'''
+User ->> Device: Log In
+Device ->> User: Access Granted
+User ->> Device: I'd like to give free recipe data
+Device ->> IPFS: Sending recipe to our peer-to-peer
+IPFS ->> Device: Successful entry
+Device ->> User Wallet: Store tokens as reward
+User ->> Device: I'd like to search for this recipe
+Device ->> IPFS: Request this data
+IPFS ->> Device: Successful retrieval of data
+Device ->> User: Return recipe data on site
+User ->> Device: I'd like to buy this person's recipe
+Device ->> User Wallet: Verify funds for this purchase
+User Wallet ->> Device: Verified funds, removed funds from account
+Device ->> Recipe Owner: Sending funds to the recipe owner's wallet
+IPFS ->> Device: Recipe copy sent after purchase
+Device ->> User: Returned recipe
+User ->> Device: I'd like to sell a recipe on the marketplace
+Device ->> IPFS: Sending recipe to our peer-to-peer
+IPFS ->> Device: Successful entry
+Device ->> User Wallet: Store tokens as reward
+Other User ->> Device: I'd like to buy User's recipe
+Device ->> Other User Wallet: Verify funds for this purchase
+Other User Wallet ->> Device: Verified funds, removed funds from account
+Device ->> User Wallet: Sending funds to the recipe owner's wallet
+IPFS ->> Device: Recipe copy sent after purchase
+Device ->> Other User: Returned recipe
+```
