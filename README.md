@@ -4,8 +4,11 @@ Baked Bliss is a decentralized recipe marketplace app utilizing AI in order to e
 # Implementation & Stack
 ## Blockchain
 We establish a Ethereum connection on our app and run our Solidity smart contracts for data entries, purchases, and selling of recipe data. User's data entries are uploaded to a peer-to-peer network using IPFS.
+## AI
+### User Recommendation System
+We will train an AI model to make good recipe recommendations using a Matrix-Factorization Algorithm in listing users and their ratings/interactions of recipes as part of a matrix. Explicit data will be collected where Users can rate recipes they've viewed or purchased and use their viewing records on the IPFS system to process trustworthy data in training this model.
 ## Web UI
-The app is built on flask for a lightweight framework capable of our development needs. Python allows for simple implementation on both frontend and our blockchain connection and smart contract execution using the Web3 api.
+The app is built on Flask for a lightweight framework capable of our development needs. Python allows for simple implementation on both frontend and our blockchain connection and smart contract execution using the Web3 api.
 
 # Sequence Diagram
 ```mermaid
