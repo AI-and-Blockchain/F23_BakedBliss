@@ -19,9 +19,7 @@ sequenceDiagram
     Device ->> IPFS: Sending recipe to our peer-to-peer
     IPFS ->> Device: Successful entry
     Device ->> User Wallet: Store tokens as reward
-    Other User ->> Device: I'd like to buy User's recipe
-    Device ->> Other User Wallet: Verify funds for this purchase
-    Other User Wallet ->> Device: Verified funds, removed funds from account
-    Device ->> User Wallet: Sending funds to the recipe owner's wallet
-    IPFS ->> Device: Recipe copy sent after purchase
-    Device ->> Other User: Returned recipe
+    User ->> Device: I'd like to add a different approach to an existing recipe
+    Device ->> IPFS: Gather information on requested existing recipe
+    IPFS ->> Device: Retrieve recipe, check for correctness of recipe modification
+    Device ->> User Wallet: Store tokens as reward upon success
