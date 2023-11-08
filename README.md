@@ -3,7 +3,7 @@ Baked Bliss is a decentralized recipe marketplace app utilizing AI in order to e
 
 # Implementation & Stack
 ## Blockchain
-We establish a Ethereum connection on our app and run our Solidity smart contracts for data entries, purchases, and selling of recipe data. User's data entries are uploaded to a peer-to-peer network using IPFS.
+We establish a Ethereum connection on our app and run our Solidity smart contracts for data entries, purchases, and selling of recipe data. User's data entries are uploaded to a peer-to-peer network using IPFS. Users may also request to modify an existing recipe, by adding a new version of the same title for people to view.
 ## AI
 ### User Recommendation System
 We will train an AI model to make good recipe recommendations using a Matrix-Factorization Algorithm in listing users and their ratings/interactions of recipes as part of a matrix. Explicit data will be collected where Users can rate recipes they've viewed or purchased and use their viewing records on the IPFS system to process trustworthy data in training this model.
@@ -33,10 +33,8 @@ User ->> Device: I'd like to sell a recipe on the marketplace
 Device ->> IPFS: Sending recipe to our peer-to-peer
 IPFS ->> Device: Successful entry
 Device ->> User Wallet: Store tokens as reward
-Other User ->> Device: I'd like to buy User's recipe
-Device ->> Other User Wallet: Verify funds for this purchase
-Other User Wallet ->> Device: Verified funds, removed funds from account
-Device ->> User Wallet: Sending funds to the recipe owner's wallet
-IPFS ->> Device: Recipe copy sent after purchase
-Device ->> Other User: Returned recipe
+User ->> Device: I'd like to add a different approach to an existing recipe
+Device ->> IPFS: Gather information on requested existing recipe
+IPFS ->> Device: Retrieve recipe, check for correctness of recipe modification
+Device ->> User Wallet: Store tokens as reward upon success
 ```
