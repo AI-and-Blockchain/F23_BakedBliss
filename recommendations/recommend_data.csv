@@ -1,4 +1,4 @@
-user_id,item_id,rating
+rid,rid2,rating
 1,101,5
 1,102,4
 2,101,3
