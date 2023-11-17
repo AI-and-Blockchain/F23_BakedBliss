@@ -7,6 +7,8 @@ We establish a Ethereum connection on our app and run our Solidity smart contrac
 ## AI
 ### User Recommendation System
 We will train an AI model to make good recipe recommendations using a Matrix-Factorization Algorithm in listing users and their ratings/interactions of recipes as part of a matrix. Explicit data will be collected where Users can rate recipes they've viewed or purchased and use their viewing records on the IPFS system to process trustworthy data in training this model.
+### Spam and Duplicate Detection
+We will train an AI model to detect duplicate or similar recipes, as well as junk recipes to ensure quality of content. This will also help find similar recipes which can aid in the recommendation system.
 ## Web UI
 The app is built on Flask for a lightweight framework capable of our development needs. Python allows for simple implementation on both frontend and our blockchain connection and smart contract execution using the Web3 api.
 
