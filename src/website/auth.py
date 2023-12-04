@@ -34,10 +34,29 @@ def home():
         with open("testrecipes.json", "r") as readfile: 
             json_object = json.load(readfile)
         for item in json_object["recipes"]:
-            if searched_recipe in item["lower_name"]:
+            if searched_recipe.lower() in item["lower_name"]:
                 ingredients_to_html = ""
                 for ingredient in item["ingredients"]:
                     ingredients_to_html += f'{ingredient}\n'
+                recipes_to_html = ""
+                #print(item['id'])
+                recipe_recommendations = Recommendation(item['id'], [])
+                recipe_recommendations.defineSimilarities()
+                top_hits = recipe_recommendations.allrankings
+                #print(top_hits)
+                sorted_recommendations = []
+                for hit in top_hits.keys():
+                   sorted_recommendations.append(top_hits[hit])
+                sorted_recommendations.sort(key=(lambda x: x[0]), reverse=True)
+                top_three = []
+                index = 0
+                for result in range(len(sorted_recommendations)):
+                    if index == 3:
+                        break
+                    recipes_to_html += f'{sorted_recommendations[result][1]}'
+                    top_three.append(sorted_recommendations[result])
+                    index += 1
+
                 return render_template("search_result.html", recipe_name=item["name"], ingredients_text=ingredients_to_html, steps_text=item["steps"])
     return render_template("home.html")
 
