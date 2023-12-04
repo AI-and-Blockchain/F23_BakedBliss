@@ -2,10 +2,26 @@ from flask import Blueprint, render_template, request
 import time
 import json
 from moralis import evm_api
+import sys
+
+# print the original sys.path
+#print('Original sys.path:', sys.path)
+
+# append a new directory to sys.path
+sys.path.append('c:\\Users\\David Fuentes\\Documents\\Fall 2023\\CSCI 4964 - AI & Blockchain\\F23_BakedBliss\\recommendations')
+
+# print the updated sys.path
+#print('Updated sys.path:', sys.path)
+
+# now you can import your module
+from Recommendation import Recommendation
 
 api_key = "%%%encoded%%%"
 
 auth = Blueprint('auth', __name__)
+#recommendations_for_recipe = Recommendation(recipe, [])
+#recommendations_for_recipe.defineSimilarities()
+#recommendations[recommendations_for_recipe.rid] = recommendations_for_recipe.allrankings
 
 @auth.route("/", methods=["GET", "POST"])
 def home():
@@ -16,6 +32,7 @@ def home():
             json_object = json.load(readfile)
         for item in json_object:
             if searched_recipe in item["name"].lower():
+
                 return render_template("search_result.html")
     return render_template("home.html")
 
@@ -64,7 +81,7 @@ def upload():
             "steps": recipe_steps
         }
 
-        print("Recipe:", recipe)
+        print("Recipe:", recipe) 
 
         good_recipe = True
 

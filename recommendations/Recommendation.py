@@ -13,7 +13,6 @@ class Recommendation:
         #[1] being a number that is the similarity between this recipe and the recipe in the tuple
         self.similarities = similarRatings
         self.allrankings = dict() #{'id': similarity rating}
-        self.recommendDataFile = open('recommend_data.csv', 'w', newline='')
         self.recipeData = json.load(open('./testrecipes.json'))
         self.datawriter = csv.writer(self.recommendDataFile)
 
@@ -62,20 +61,6 @@ class Recommendation:
         self.datawriter.writerow([this_recipe['id']]) 
         
         return
-
-    def writeNewSimilarityForRecipe(self, r2data):
-        #this function will be to write in the csv file the similarity rating calculated from
-        #defineSimilarites function between rid (this current recipe) and rid2 (the recipe being
-        #compared)
-        #Future: add these similarity ratings to IPFS Node information about the current recipe
-        None
-
-    def closeCSVFile(self):
-        self.recommendDataFile.close()
-
-    def __str__(self):
-        return str(self.rid) + '\n' + str(self.similarities)
-
 
 #r1 = Recommendation(1, [])
 #r1.defineSimilarities()
