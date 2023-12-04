@@ -2,6 +2,9 @@ from flask import Blueprint, render_template, request
 import time
 import json
 from moralis import evm_api
+from web3 import Web3
+import base64
+import website.text_similarity as text_similarity
 
 api_key = "%%%encoded%%%"
 
@@ -14,9 +17,12 @@ def home():
         searched_recipe = request.form.get("search_recipe")
         with open("testrecipes.json", "r") as readfile: 
             json_object = json.load(readfile)
-        for item in json_object:
-            if searched_recipe in item["name"].lower():
-                return render_template("search_result.html")
+        for item in json_object["recipes"]:
+            if searched_recipe in item["lower_name"]:
+                ingredients_to_html = ""
+                for ingredient in item["ingredients"]:
+                    ingredients_to_html += f'{ingredient}\n'
+                return render_template("search_result.html", recipe_name=item["name"], ingredients_text=ingredients_to_html, steps_text=item["steps"])
     return render_template("home.html")
 
 @auth.route("/upload", methods=["GET", "POST"])
@@ -66,17 +72,44 @@ def upload():
 
         print("Recipe:", recipe)
 
-        good_recipe = True
+        new_recipe_data = text_similarity.get_recipe_words(recipe)
+        all_data = text_similarity.get_data()
+        recipe_data_with_addition = all_data + [new_recipe_data]
+        similarity_model = text_similarity.train_model(recipe_data_with_addition)
+
+        good_recipe = False
+        for i in range(len(similarity_model.loc[len(similarity_model) - 1])):
+            if similarity_model.loc[len(similarity_model) - 1][i] > .85 and i != len(similarity_model) - 1:
+                good_recipe = True
 
         if good_recipe:
+            print("GODOD RECIPE")
+            
             json_recipe = json.dumps(recipe, indent=4)
             with open("testrecipes.json", "w") as outfile:
                 outfile.write(json_recipe)
 
-            result = evm_api.ipfs.upload_folder(
+            encoded = base64.b64encode(bytes(json.dumps(recipe), "ascii")).decode("ascii")
+
+            body = [
+                {
+                    "path": f"BakedBliss/{recipe_name}.json",
+                    "content": encoded
+                }
+            ]
+
+            ipfs_hash = evm_api.ipfs.upload_folder(
                 api_key=api_key,
-                body=[recipe],
+                body=body,
             )
-            ipfs_hash = result
+            print(ipfs_hash)
+            # Call contract to write hash and award user
+
+
+        else:
+            pass
+            #error message here
+
+
         
     return render_template("upload.html")
