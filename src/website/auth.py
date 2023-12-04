@@ -3,6 +3,7 @@ import time
 import json
 from moralis import evm_api
 import sys
+import gcoin_connection
 
 # print the original sys.path
 #print('Original sys.path:', sys.path)
@@ -59,6 +60,7 @@ def upload():
         ingredient11 = request.form.get("ingredient11")
         ingredient12 = request.form.get("ingredient12")
         recipe_steps = request.form.get("recipe_steps")
+        user_address = request.form.get("metamask_address")
 
         ingredients = [ingredient1,
                        ingredient2,
@@ -120,6 +122,8 @@ def upload():
             )
             print(ipfs_hash)
             # Call contract to write hash and award user
+            if user_address != "":
+                gcoin_connection.reward_user()
 
 
         else:
