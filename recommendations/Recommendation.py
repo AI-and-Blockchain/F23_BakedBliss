@@ -14,7 +14,6 @@ class Recommendation:
         self.similarities = similarRatings
         self.allrankings = dict() #{'id': similarity rating}
         self.recipeData = json.load(open('./testrecipes.json'))
-        self.datawriter = csv.writer(self.recommendDataFile)
 
     def compute_similarity(self, input_string, reference_string):
     #The ndiff method returns a list of strings representing the differences between the two input strings.
@@ -57,8 +56,6 @@ class Recommendation:
                     self.allrankings[recipe['id']].append(similarity)
                     self.allrankings[recipe['id']].append(recipe['name'])
                 print(similarity)
-
-        self.datawriter.writerow([this_recipe['id']]) 
         
         return
 
