@@ -1,26 +1,35 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} 
-{% block main %}
-<div class="d-flex mt-5 mx-5 justify-content-end">
-    <ul class="nav nav-underline">
-        <li class="nav-item">
-          <a class="nav-link" href="/upload">Upload</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Buy/Sell</a>
-        </li>
-    </ul>
-</div> 
-<div class="d-flex mt-4 mb-5 justify-content-center">
- <h3>Search recipes</h3>
-</div>
-<form method="POST">
-    <div class="d-flex justify-content-center">
-     <div class="d-flex-inline">
-      <div class="input-group mb-3">
-        <input type="text" name="search_recipe" class="form-control" placeholder="Recipe name" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+
+<!DOCTYPE html>
+  <html>
+    {% extends "base.html" %} {% block title %}Home{% endblock %} 
+    {% block main %}
+    <head>
+      <link rel="stylesheet" type="text/css" href="../static/styles/style.css">
+    </head>
+    <body>
+      <ul class="navbar">
+        <li><a href="/upload">Upload</a></li>
+        <li><a href="#">Buy and Sell</a></li> 
+      </ul>
+      <div
+        <div class="d-flex mt-4 mb-5 justify-content-center">
+          <h2>Search recipes</h2>
+        </div>
+        <form method="POST">
+            <div class="d-flex justify-content-center">
+            <div class="d-flex-inline">
+              <div class="input-group mb-3">
+                <center> <input type="text" name="search_recipe" class="form-control" placeholder="Recipe name" aria-label="Recipient's username" aria-describedby="button-addon2"></center>
+                <center> <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button></center>
+              </div>
+            </div>
+            </div>
+        </form>
       </div>
-     </div>
-    </div>
-</form>
-{% endblock %}
+      
+
+
+    </body>
+    
+    {% endblock %}
+  </html>
