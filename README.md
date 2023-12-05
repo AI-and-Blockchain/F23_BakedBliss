@@ -11,6 +11,8 @@ We will train an AI model to make good recipe recommendations using a Matrix-Fac
 We will train an AI model to detect duplicate or similar recipes, as well as junk recipes to ensure quality of content. This will also help find similar recipes which can aid in the recommendation system.
 ## Web UI
 The app is built on Flask for a lightweight framework capable of our development needs. Python allows for simple implementation on both frontend and our blockchain connection and smart contract execution using the Web3 api.
+## Running our app
+Simply run main.py from our src file, codes for our smart contract execution and our ipfs upload are hidden for security purposes. Will be updated in the near future. 
 
 # Sequence Diagram
 ```mermaid
